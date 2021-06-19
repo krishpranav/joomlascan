@@ -6,4 +6,8 @@ class Cache
     def get(request)
         @memory[request]
     end
-    
+
+    def set(request, response)
+        @memory[request] = response
+    end
+end
