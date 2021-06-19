@@ -67,5 +67,11 @@ class Application
         scan_templates
     end
 
-    
+    def start
+        execute_fingerprinting_tasks
+        display_joomla_vulns
+        scan_extensions
+    end
+end
+
     
