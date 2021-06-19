@@ -46,4 +46,9 @@ class Scanner
         req.options['proxy'] = @opts[:proxy] if @opts[:proxy]
         req.options['proxyuserpwd'] = @opts[:proxy_auth] if @opts[:proxy_auth]
         req
-      end
+    end
+
+    def index_request
+        create_request('/')
+    end
+    
