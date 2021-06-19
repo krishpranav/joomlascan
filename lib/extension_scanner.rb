@@ -18,4 +18,7 @@ class ExtensionScanner < Scanner
         while File.symlink?(base)
             base = File.expand_path(File.readlink(base), File.dirname(base))
         end
-        
+
+        @@base_path = File.dirname(File.expand_path(File.join(File.dirname(base))))
+    end
+    
