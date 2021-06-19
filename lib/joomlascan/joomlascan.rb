@@ -10,4 +10,8 @@ module JoomlaScan
         print_good('Scan aborted')
         exit(1)
     end
+
+    def has_target
+        !opts[:url].nil? && !opts[:url].empty?
+    end
     
