@@ -145,4 +145,23 @@ class ExtensionScanner < Scanner
         extensions.delete_if { |e| !filter.include? e['name']} unless filter.empty?
         extensions
     end
+
+    def scan(filter)
+        return [] unless filter
+        extensions = apply_filter(data_file_json, filter)
+        detected = []
+        lock = Mutex.new
+    
+        extensions.each do |e|
+          queue_requests(e['name']) do |resp, extension_path, manifest_uri|
+            lock.synchronize do
+              res = process_result(e, extension_path, manifest_uri, resp.body)
+              detected.push(res) if res[:vulns].length > 0
+            end
+          end
+        end
+    
+        hydra.run
+        detected
+    end
     
