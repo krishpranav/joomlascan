@@ -121,4 +121,19 @@ class ExtensionScanner < Scanner
     
         in_range
     end
+
+    def self.version_is_vulnerable(version, vuln)
+        found = false
+
+        if vuln['ranges']
+            vuln['ranges'].each do |range|
+                found = version_in_range(version, range)
+                break if found
+            end
+        else
+            found = version_in_range(version, vuln)
+        end
+
+        found
+    end
     
