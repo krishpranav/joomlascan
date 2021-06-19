@@ -26,4 +26,14 @@ module JoomlaScan
         
         found
     end
-    
+
+    def display_joomla_vulns
+        return unless joomla_version
+
+        joomla_vulns = joomla_vulnerabilities
+        return unless joomla_vulns
+
+        print_warning("Found #{joomla_vulns.length} vulnerabilities affecting this version of Joomla!")
+        display_vulns(joomla_vulns)
+    end
+end
