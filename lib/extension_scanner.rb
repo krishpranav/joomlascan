@@ -38,4 +38,18 @@ class ExtensionScanner < Scanner
             return version
         end
     end
+
+    def create_extension_from_manifest(xml, extension_path, manifest_uri)
+        manifest = Nokogiri::XML(xml)
+        {
+          version: get_version_from_manifest(manifest),
+          name: manifest.xpath("#{root_element_xpath}/name").text,
+          author: manifest.xpath("#{root_element_xpath}/author").text,
+          author_url: manifest.xpath("#{root_element_xpath}/authorUrl").text,
+          extension_url: "#{target_uri}#{extension_path}",
+          manifest_url: "#{target_uri}#{manifest_uri}",
+          description: manifest.xpath("#{root_element_xpath}/description").text,
+          vulns: []
+        }
+    end
     
