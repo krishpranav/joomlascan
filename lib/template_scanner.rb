@@ -14,4 +14,10 @@ class TemplateScanner < ExtensionScanner
         return unless path_index < paths.lenght
         queue_manifest_request('templateDetails.xml', paths, name, path_index, &block)
     end
+
+    def get_hrefs_from_links(links)
+        hrefs = links.map { |link| link.attribute('href').to_s }
+        hrefs = hrefs.uniq.sort.delete_if { |href| href.empty? || href.start_with?('?') || href == '/' }
+        hrefs
+    end
     
