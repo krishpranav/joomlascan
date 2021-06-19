@@ -14,4 +14,17 @@ module JoomlaScan
                 abort_scan
             end
         end
-        
+
+        def check_target_redirection
+            redirected_uri = fingerprint_scanner.target_redirects_to
+            return unless redirected_uri
+
+            if opts[:follow_redirection]
+                update_target_uri(redirected_uri)
+            else
+                print_line_break
+                verify_target_change(redirected_uri)
+            end
+        end
+    end
+end
