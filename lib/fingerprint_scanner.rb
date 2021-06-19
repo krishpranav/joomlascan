@@ -58,4 +58,20 @@ class FingerprintScanner < Scanner
     def registration_uri
         '/index.php?option=com_users&view=registration'
     end
+
+    def directory_listing_enabled(uri)
+        return @cached_index_results[uri] if @cached_index_results.has_key?(uri)
+    
+        req = create_request(uri)
+        @cached_index_results[uri] = false
+        req.on_complete do |resp|
+          if resp.code == 200 && resp.body[%r{<title>Index of}]
+            @cached_index_results[uri] = true
+          end
+        end
+    
+        req.run
+        @cached_index_results[uri]
+    end
+    
     
