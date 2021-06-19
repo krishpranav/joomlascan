@@ -25,4 +25,14 @@ module JoomlaScan
             print banner.light_white if use_colours
             print banner unless use_colours
         end
+
+        def read_input(prompt)
+            if use_colours
+                print_line('[?]'.light_white, prompt, false)
+            else
+                print_line('[?]', prompt, false)
+            end
+
+            Readline.readline
+        end
         
