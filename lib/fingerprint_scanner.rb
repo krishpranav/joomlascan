@@ -136,4 +136,18 @@ class FingerprintScanner < Scanner
       req.run
       version
     end
+
+    def version_from_manifest
+      req = create_request('/administrator/manifests/files/joomla.xml')
+      version = nil
+      req.on_complete do |resp|
+        doc = Nokogiri::XML(resp.body)
+        doc.xpath('/extension/version/text()').each do |v|
+          version = extract_version_number(v)
+        end
+      end
+
+      req.run
+      version 
+    end
     
