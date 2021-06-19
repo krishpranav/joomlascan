@@ -22,4 +22,15 @@ class Scanner
     def follow_redirection
         @opts[:follow_redirection]
     end
+
+    def normalize_uri(*parts)
+        uri = parts * '/'
+        uri = uri.gsub!('//', '/') while uri.index('//')
+
+        unless uri[0, 1] == '/'
+            uri = '/' + uri
+        end
+
+        uri
+    end
     
