@@ -68,4 +68,11 @@ class ExtensionScanner < Scanner
     def directory_name
         ''
     end
+
+    def possible_paths(name)
+        paths = []
+        paths.push(normalize_uri('administrator', directory_name, "#{extension_prefix}#{name}"))
+        paths.push(normalize_uri(directory_name, "#{extension_prefix}#{name}"))
+        paths
+    end
     
