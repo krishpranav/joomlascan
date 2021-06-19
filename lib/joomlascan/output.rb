@@ -43,4 +43,12 @@ module JoomlaScan
                 print_line('[+]', text)
             end
         end
+
+        def print_warning(text)
+            if use_colours
+                print_line('[!]'.yellow, text)
+            else
+                print_line('[!]', text)
+            end
+        end
         
