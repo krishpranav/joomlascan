@@ -15,4 +15,8 @@ describe ComponentScanner do
             threads: 20
         )
 
-end
+        Typhoeus.stub(/.*/) do
+            Typhoeus::Response.new(code: typhoeus_code, body: typhoeus_body, headers: typhoeus_headers)
+        end
+    end
+
