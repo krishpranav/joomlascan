@@ -26,3 +26,16 @@ class ExtensionScanner < Scanner
         '//*'
     end
     
+    def get_version_from_manifest(manifest)
+        version_text = manifest.xpath("#{root_element_xpath}/version").text
+
+        begin
+            version = Gem::Version.new(version_text)
+        rescue
+            version_number = extract_version_number(version_text)
+            version = Gem::Version.new(version_number) if version_number
+        ensure 
+            return version
+        end
+    end
+    
