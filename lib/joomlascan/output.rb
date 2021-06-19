@@ -17,4 +17,12 @@ module JoomlaScan
             
             print "\r\n" if new_line
         end
+
+        def print_banner
+            banner = %(
+                JOOMLA SCANNER
+            )
+            print banner.light_white if use_colours
+            print banner unless use_colours
+        end
         
