@@ -8,4 +8,8 @@ class ComponentScanner < ExtensionScanner
     def extension_prefix
         'com_'
     end
-    
+
+    def directory_name
+        'components'
+    end
+end
