@@ -60,4 +60,12 @@ class ExtensionScanner < Scanner
         end
         extension
     end
+
+    def extension_prefix
+        ''
+    end
+
+    def directory_name
+        ''
+    end
     
