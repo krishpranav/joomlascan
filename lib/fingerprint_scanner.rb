@@ -54,4 +54,8 @@ class FingerprintScanner < Scanner
           'X-Content-Type-Options'
         ]
     end
+
+    def registration_uri
+        '/index.php?option=com_users&view=registration'
+    end
     
