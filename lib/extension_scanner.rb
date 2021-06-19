@@ -52,4 +52,12 @@ class ExtensionScanner < Scanner
           vulns: []
         }
     end
+
+    def process_result(ext, extension_path, manifest_uri, res)
+        extension = create_extension_from_manifest(res, extension_path, manifest_uri)
+        ext['vulns'].each do |v|
+            extension[:vulns].push(v) if ExtensionScanner.version_is_vulnerable(extension[:version], v)
+        end
+        extension
+    end
     
