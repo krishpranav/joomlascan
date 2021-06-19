@@ -14,4 +14,16 @@ module JoomlaScan
     def has_target
         !opts[:url].nil? && !opts[:url].empty?
     end
+
+    def joomla_vulnerabilities
+        json = File.read(File.join(ExtensionScanner.base_path, 'data/joomla.json'))
+        vulns = JSON.parse(json)
+        found = []
+        
+        vulns.each do |v|
+            found.push(v) if ExtensionScanner.version_is_vulnerable(Gem::Version.new(joomla_version), v)
+        end
+        
+        found
+    end
     
