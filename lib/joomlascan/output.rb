@@ -35,4 +35,12 @@ module JoomlaScan
 
             Readline.readline
         end
+
+        def print_good(text)
+            if use_colours
+                print_line('[+]'.green, text)
+            else
+                print_line('[+]', text)
+            end
+        end
         
