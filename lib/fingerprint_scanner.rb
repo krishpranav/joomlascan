@@ -73,5 +73,29 @@ class FingerprintScanner < Scanner
         req.run
         @cached_index_results[uri]
     end
+
+    def administrator_components_listing_enabled
+        directory_listing_enabled('/administrator/components/')
+      end
+    
+      def components_listing_enabled
+        directory_listing_enabled('/components/')
+      end
+    
+      def administrator_modules_listing_enabled
+        directory_listing_enabled('/administrator/modules/')
+      end
+    
+      def modules_listing_enabled
+        directory_listing_enabled('/modules/')
+      end
+    
+      def administrator_templates_listing_enabled
+        directory_listing_enabled('/administrator/templates/')
+      end
+    
+      def templates_listing_enabled
+        directory_listing_enabled('/templates/')
+      end
     
     
