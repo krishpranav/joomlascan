@@ -108,4 +108,17 @@ class ExtensionScanner < Scanner
         end
     
         hydra.queue req
-      end
+    end
+
+    def self.version_in_range(version, range)
+        in_range = false
+    
+        if range['introduced_in'].nil? || Gem::Version.new(range['introduced_in']) <= version
+          if range['fixed_in'].nil? || Gem::Version.new(range['fixed_in']) > version
+            in_range = true
+          end
+        end
+    
+        in_range
+    end
+    
