@@ -49,5 +49,15 @@ class Application
           o.string '--user-agent', 'The user agent string to send with all requests', default: 'Mozilla/5.0 (Windows NT 6.3; rv:36.0) Gecko/20100101 Firefox/36.0'
           o.bool '--hide-banner', 'Do not show the JoomlaVS banner'
         end
-      end
+    end
+
+    def execute_fingerprinting_tasks
+        @fingerprint_scanner = FingerprintScanner.new(opts[:url], opts)
+        check_target_redirection
+        @target = fingerprint_scanner.target_uri
+        check_user_registration
+        inspect_headers
+        check_indexes
+        determine_joomla_version
+    end
     
