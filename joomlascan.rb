@@ -74,4 +74,7 @@ class Application
     end
 end
 
+app = Application.new
+app.print_banner unless app.opts[:hide_banner]
+
     
