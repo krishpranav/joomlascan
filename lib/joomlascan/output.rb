@@ -5,4 +5,16 @@ require 'readline'
 module JoomlaScan
     module Output
         attr_accessor :use_colours
+
+        def print_line(prefix, text, new_line = true)
+            print prefix
+
+            if use_colours
+                print " #{text}".light_white
+            else
+                print " #{text}"
+            end
+            
+            print "\r\n" if new_line
+        end
         
