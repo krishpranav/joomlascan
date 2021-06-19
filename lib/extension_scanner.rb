@@ -136,4 +136,8 @@ class ExtensionScanner < Scanner
 
         found
     end
+
+    def data_file_json
+        JSON.parse(File.read(@data_file))
+    end
     
