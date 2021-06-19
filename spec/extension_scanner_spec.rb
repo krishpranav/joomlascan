@@ -14,3 +14,12 @@ describe ExtensionScanner do
     let(:typhoeus_code) { 200 }
     let(:typhoeus_body) { '' }
     let(:typhoeus_headers) { { 'Content-Type' => 'text/html; charset=utf-8' } }
+
+    before :each do
+        @scanner = ExtensionScanner.new(target_uri, data_file, {
+            :user_agent => opts_user_agent,
+            :threads => opts_threads,
+            :follow_redirection => opts_follow_redirection,
+            :basic_auth => opts_basic_auth,
+            :proxy_auth => opts_proxy_auth
+        })
