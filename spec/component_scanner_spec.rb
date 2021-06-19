@@ -20,3 +20,9 @@ describe ComponentScanner do
         end
     end
 
+    describe '#possible_paths' do
+        it 'returns two possible paths for the component to be found' do
+          expect(@scanner.possible_paths('test').length).to eq 2
+        end
+    end
+    
