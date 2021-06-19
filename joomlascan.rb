@@ -18,3 +18,10 @@ class Application
     include JoomlaScan::Fingerprint
     include JoomlaScan::Modules
     include JoomlaScan::Templates
+
+    def initialize
+        initialize_options
+        @use_colours = !opts[:no_colour]
+        @target = opts[:url]
+    end
+    
