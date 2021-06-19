@@ -60,4 +60,12 @@ class Application
         check_indexes
         determine_joomla_version
     end
+
+    def scan_extensions
+        scan_components
+        scan_modules
+        scan_templates
+    end
+
+    
     
