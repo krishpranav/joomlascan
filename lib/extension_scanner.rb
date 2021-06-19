@@ -75,4 +75,18 @@ class ExtensionScanner < Scanner
         paths.push(normalize_uri(directory_name, "#{extension_prefix}#{name}"))
         paths
     end
+
+    def queue_manifest_request(manifest_name, paths, name, path_index, &block)
+        uri = normalize_uri(paths[path_index], manifest_name)
+        req = create_request(uri)
+        req.on_complete do |resp|
+            if resp.code == 200
+                block.call(resp, paths[path_index], uri)
+            else
+                queue_requests(name, path_index + 1, &block)
+            end
+        end
+
+        hydra.queue req
+    end
     
