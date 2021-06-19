@@ -140,4 +140,9 @@ class ExtensionScanner < Scanner
     def data_file_json
         JSON.parse(File.read(@data_file))
     end
+
+    def apply_filter(extension, filter)
+        extensions.delete_if { |e| !filter.include? e['name']} unless filter.empty?
+        extensions
+    end
     
