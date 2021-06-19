@@ -97,5 +97,18 @@ class FingerprintScanner < Scanner
       def templates_listing_enabled
         directory_listing_enabled('/templates/')
       end
-    
+
+      
+    def user_registration_enabled
+        req = create_request(registration_uri)
+        req.options['followlocation'] = false
+
+        enabled = true
+        req.on_complete do |resp|
+            enabled = resp.code == 200
+        end
+
+        req.run
+        enabled
+    end
     
