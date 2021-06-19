@@ -5,3 +5,4 @@ require_relative 'lib/cache'
 Typhoeus::Config.cache = Cache.new
 require_relative 'lib/joomlavs/helper'
 
+$stdout.sync = true
