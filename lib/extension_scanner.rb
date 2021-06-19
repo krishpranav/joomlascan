@@ -21,4 +21,8 @@ class ExtensionScanner < Scanner
 
         @@base_path = File.dirname(File.expand_path(File.join(File.dirname(base))))
     end
+
+    def root_element_xpath
+        '//*'
+    end
     
