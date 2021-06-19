@@ -23,3 +23,9 @@ describe ExtensionScanner do
             :basic_auth => opts_basic_auth,
             :proxy_auth => opts_proxy_auth
         })
+
+        Typhoeus.stub(/.*/) do
+            Typhoeus::Response.new(code: typhoeus_code, body: typhoeus_body, headers: typhoeus_headers)
+          end
+        end
+      
