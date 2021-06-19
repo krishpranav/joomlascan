@@ -77,4 +77,15 @@ end
 app = Application.new
 app.print_banner unless app.opts[:hide_banner]
 
+
+if app.has_target
+    app.print_good("URL: #{app.target}")
+    app.print_good("Started #{Time.now.asctime}")
+    app.start
+    app.print_line_break
+    app.print_good 'Finished'
+else
+    puts app.opts
+end
+
     
