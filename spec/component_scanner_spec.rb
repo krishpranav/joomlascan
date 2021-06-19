@@ -8,4 +8,11 @@ describe ComponentScanner do
     let(:typhoeus_body) { '' }
     let(:typhoeus_headers) { { 'Content-Type' => 'text/html; charset=utf-8' } }
     
+    before :each do
+        @scanner = ComponentScanner.new(
+            target_uri,
+            user_agent: opts_user_agent,
+            threads: 20
+        )
+
 end
